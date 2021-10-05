@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'personal-assistant';
+  isSelectionCardOpen = false;
+
+  openSelectionCard() {
+    this.isSelectionCardOpen = true;
+  }
+
+  closeSelectionCard() {
+    this.isSelectionCardOpen = false;
+  }
 }
