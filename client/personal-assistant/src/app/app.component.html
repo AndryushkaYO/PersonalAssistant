@@ -12,6 +12,7 @@
   ></app-selection-menu>
   <button mat-fab (click)="changeTheme()"
     color="warn" aria-label="Example icon button with a home icon">
-    <mat-icon>dark_mode</mat-icon>
+    <mat-icon *ngIf="isLightTheme">dark_mode</mat-icon>
+    <mat-icon *ngIf="!isLightTheme">light_mode</mat-icon>
   </button>
 </div>
