@@ -2,10 +2,16 @@
 <app-side-block></app-side-block>
 <app-main-block></app-main-block>
 <app-footer-block></app-footer-block> -->
-<button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="openSelectionCard()">
-  <mat-icon>bookmark</mat-icon>
-</button>
-<app-selection-menu
-  [isSelectionCardOpen]="isSelectionCardOpen"
-  (onSelectionClose)="closeSelectionCard()"
-></app-selection-menu>
+<div [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }">
+  <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="openSelectionCard()">
+    <mat-icon>bookmark</mat-icon>
+  </button>
+  <app-selection-menu
+    [isSelectionCardOpen]="isSelectionCardOpen"
+    (onSelectionClose)="closeSelectionCard()"
+  ></app-selection-menu>
+  <button mat-fab (click)="changeTheme()"
+    color="warn" aria-label="Example icon button with a home icon">
+    <mat-icon>dark_mode</mat-icon>
+  </button>
+</div>
