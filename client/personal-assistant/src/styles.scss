@@ -8,10 +8,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 $app-primary: mat-palette($mat-indigo);
 $app-accent:  mat-palette($mat-amber, A200, A100, A400);
 $app-warn:    mat-palette($mat-red);
-$light-theme:   mat-light-theme($app-primary, $app-accent, $app-warn);
+$light-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 
 .light-theme {
   @include angular-material-theme($light-theme);
+
+  .scroll::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+
+    &-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+    }
+
+    &-thumb {
+      background-color: #000000DE;
+    }
+  }
 }
 
 $dark-primary: mat-palette($mat-blue-grey);
@@ -21,4 +35,18 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
   @include angular-material-theme($dark-theme);
+
+  .scroll::-webkit-scrollbar {
+    width: 6px;
+    background-color: #000000DE;
+
+    &-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+      background-color: #F5F5F5;
+    }
+
+    &-thumb {
+      background-color: #F5F5F5 ;
+    }
+  }
 }

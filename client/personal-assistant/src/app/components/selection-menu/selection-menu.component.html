@@ -11,7 +11,7 @@
     <mat-card-title>Select tools you'd like to use</mat-card-title>
     <mat-card-subtitle>*You can change them later</mat-card-subtitle>
   </div>
-  <div class="cards">
+  <div class="cards scroll">
     <mat-card *ngFor="let card of cards" class="card" (click)="onCardClick(card.id)"
       matTooltip="Info tooltip about {{card.name}} tool"
       matTooltipClass='tooltip'>
