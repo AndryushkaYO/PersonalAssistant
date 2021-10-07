@@ -2,28 +2,28 @@
   <button mat-icon-button color="primary"
     aria-label="Close selection component button"
     (click)="closeSelectionCard()"
-    class=" card-close-icon">
+    class="main-card-close-icon">
     <span class="material-icons">
       close
     </span>
   </button>
-  <div class="card-header">
+  <div class="main-card-header">
     <mat-card-title>Select tools you'd like to use</mat-card-title>
     <mat-card-subtitle>*You can change them later</mat-card-subtitle>
   </div>
-  <div class="cards">
-  <mat-card *ngFor="let card of cards" class="card" (click)="onCardClick(card.id)"
-    matTooltip="Info tooltip about {{card.name}} tool"
-    matTooltipClass='tooltip'>
-    <mat-checkbox class="selection-card-checkbox" [(ngModel)]="card.checked" (click)="$event.stopPropagation()"></mat-checkbox>
-    <mat-card-title>{{card.name}}</mat-card-title>
-    <mat-card-content>
-      <p>This is text</p>
-    </mat-card-content>
-  </mat-card>
-</div>
-<mat-card-actions class="card-actions">
-  <button mat-button color="warn" (click)="closeSelectionCard()">Cancel</button>
-  <button mat-button color="primary" (click)="saveSelectionCard()">Save</button>
-</mat-card-actions>
+  <div class="cards scroll">
+    <mat-card *ngFor="let card of cards" class="card" (click)="onCardClick(card.id)"
+      matTooltip="Info tooltip about {{card.name}} tool"
+      matTooltipClass='tooltip'>
+      <mat-checkbox class="card-checkbox" [(ngModel)]="card.checked" (click)="$event.stopPropagation()"></mat-checkbox>
+      <mat-card-title>{{card.name}}</mat-card-title>
+      <mat-card-content>
+        <p>This is text</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-card-actions class="main-card-actions">
+    <button mat-button color="warn" (click)="closeSelectionCard()">Cancel</button>
+    <button mat-button color="primary" (click)="saveSelectionCard()">Save</button>
+  </mat-card-actions>
 </mat-card>
