@@ -1,1 +1,16 @@
-<p>header-block works!</p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <button mat-icon-button (click)="toggleSideBar()">
+          <mat-icon>menu</mat-icon>
+      </button>
+
+      <span> Personal Assistant App </span>
+      <button mat-icon-button (click)="changeTheme()"
+        class="theme-button"
+        aria-label="Change theme button">
+        <mat-icon *ngIf="isLightTheme">dark_mode</mat-icon>
+        <mat-icon *ngIf="!isLightTheme">light_mode</mat-icon>
+      </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>

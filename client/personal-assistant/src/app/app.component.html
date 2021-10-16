@@ -1,18 +1,19 @@
-<!-- <app-header-block></app-header-block>
-<app-side-block></app-side-block>
-<app-main-block></app-main-block>
-<app-footer-block></app-footer-block> -->
-<div [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }">
-  <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon" (click)="openSelectionCard()">
-    <mat-icon>bookmark</mat-icon>
-  </button>
-  <app-selection-menu
-    [isSelectionCardOpen]="isSelectionCardOpen"
-    (onSelectionClose)="closeSelectionCard()"
-  ></app-selection-menu>
-  <button mat-fab (click)="changeTheme()"
-    color="warn" aria-label="Example icon button with a home icon">
-    <mat-icon *ngIf="isLightTheme">dark_mode</mat-icon>
-    <mat-icon *ngIf="!isLightTheme">light_mode</mat-icon>
-  </button>
-</div>
+<app-header-block
+  [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }"
+  (toggleSideBarForMe)="sideBarToggler($event)"
+  (onChangeTheme)="changeTheme()"
+  [isLightTheme]="isLightTheme"
+></app-header-block>
+
+<mat-drawer-container [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }">
+  <mat-drawer mode="side" [opened]="sideBarOpen" class="scroll">
+    <app-side-block></app-side-block>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+<app-footer-block
+  [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }"
+></app-footer-block>
