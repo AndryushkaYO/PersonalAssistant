@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'personal-assistant';
   isSelectionCardOpen = false;
   isLightTheme = true;
+  sideBarOpen = false;
 
   openSelectionCard() {
     this.isSelectionCardOpen = true;
@@ -20,5 +21,11 @@ export class AppComponent {
 
   changeTheme() {
     this.isLightTheme = !this.isLightTheme;
+  }
+
+  ngOnInit() { }
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 }
