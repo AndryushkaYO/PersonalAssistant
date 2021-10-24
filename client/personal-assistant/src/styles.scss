@@ -13,7 +13,7 @@ $light-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 .light-theme {
   @include angular-material-theme($light-theme);
 
-  .scroll::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 6px;
     background-color: #F5F5F5;
 
@@ -36,7 +36,7 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .dark-theme {
   @include angular-material-theme($dark-theme);
 
-  .scroll::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 6px;
     background-color: #000000DE;
 
