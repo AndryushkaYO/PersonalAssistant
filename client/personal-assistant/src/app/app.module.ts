@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { PostCreateComponent } from './components/diary/posts/post-create/post-create.component';
+import { PostListComponent } from './components/diary/posts/post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +22,17 @@ import { AppRoutingModule } from './app-routing.module';
     MainBlockComponent,
     SideBlockComponent,
     FooterBlockComponent,
-    SelectionMenuComponent
+    SelectionMenuComponent,
+    PostCreateComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

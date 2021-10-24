@@ -9,7 +9,7 @@ export class AppComponent implements OnInit {
   title = 'personal-assistant';
   isSelectionCardOpen = false;
   isLightTheme = true;
-  sideBarOpen = false;
+  sideBarOpen = true;
 
   openSelectionCard() {
     this.isSelectionCardOpen = true;
