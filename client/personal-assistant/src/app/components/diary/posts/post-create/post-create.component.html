@@ -1,31 +1,62 @@
+<div class="back">
+  <a mat-button color="primary" [routerLink]="['/posts']">
+    <mat-icon>arrow_back</mat-icon> Back to posts</a>
+</div>
+
 <mat-card>
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form *ngIf="!isLoading" [formGroup]="form">
     <mat-form-field>
       <input
         matInput
         type="text"
-        name="title"
-        ngModel
-        required
         minlength="3"
-        placeholder="Post Title"
-        #title="ngModel">
-      <mat-error *ngIf="title.invalid">Please enter a post title.</mat-error>
+        formControlName="title"
+        placeholder="Post Title">
+      <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>
     </mat-form-field>
     <mat-form-field>
       <textarea
         matInput
         rows="4"
-        name="content"
-        ngModel
-        required
-        placeholder="Post Content"
-        #content="ngModel"></textarea>
-      <mat-error *ngIf="content.invalid">Please enter a post title.</mat-error>
+        formControlName="content"
+        placeholder="Post Content"></textarea>
+      <mat-error *ngIf="form.get('content').invalid">Please enter a post content.</mat-error>
     </mat-form-field>
+    <mat-button-toggle-group formControlName="mood" aria-label="Mood">
+      <mat-button-toggle [value]="mood" *ngFor="let mood of moods()">{{moodsIcons[mood]}}</mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="pick-image">
+      <button mat-stroked-button type="button" (click)="filePicker.click()"> Pick image </button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.get('title').value">
+    </div>
+  
+    <mat-form-field class="example-chip-list">
+      <mat-label>Labels</mat-label>
+      <mat-chip-list #chipList aria-label="Labels">
+        <mat-chip *ngFor="let label of labels" [selectable]="true"
+                 [removable]="true" (removed)="remove(label)">
+          {{label}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="New label..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add($event)">
+      </mat-chip-list>
+    </mat-form-field>
+    
+    
+    
+    
     <button
       mat-raised-button
       color="accent"
+      (click)="onSavePost()"
       type="submit">Save Post</button>
   </form>
 </mat-card>

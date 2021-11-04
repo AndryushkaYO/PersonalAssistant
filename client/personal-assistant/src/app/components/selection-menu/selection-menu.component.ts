@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./selection-menu.component.scss']
 })
 export class SelectionMenuComponent implements OnInit {
-  @Input() isSelectionCardOpen = false;
+  @Input() isSelectionCardOpen = true;
   @Output() onSelectionClose = new EventEmitter()
 
   constructor() { }
