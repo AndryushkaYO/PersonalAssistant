@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-block.component.scss']
 })
 export class MainBlockComponent implements OnInit {
+  isSelectionCardOpen =  true;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  closeSelectionCard(){}
 }

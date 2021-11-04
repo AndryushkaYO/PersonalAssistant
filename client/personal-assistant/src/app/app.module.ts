@@ -9,7 +9,7 @@ import { FooterBlockComponent } from './footer-block/footer-block.component';
 import { SelectionMenuComponent } from './components/selection-menu/selection-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PostCreateComponent } from './components/diary/posts/post-create/post-create.component';
@@ -32,7 +32,8 @@ import { PostListComponent } from './components/diary/posts/post-list/post-list.
     MaterialModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
