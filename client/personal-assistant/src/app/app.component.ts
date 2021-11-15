@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,12 @@ export class AppComponent implements OnInit {
   isSelectionCardOpen = false;
   isLightTheme = true;
   sideBarOpen = false;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.autoAuthUser();
+  }
 
   openSelectionCard() {
     this.isSelectionCardOpen = true;
@@ -23,7 +30,6 @@ export class AppComponent implements OnInit {
     this.isLightTheme = !this.isLightTheme;
   }
 
-  ngOnInit() { }
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;

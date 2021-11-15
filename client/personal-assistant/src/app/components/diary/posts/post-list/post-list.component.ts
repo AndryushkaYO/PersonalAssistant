@@ -5,6 +5,7 @@ import { Mood, Post } from "../post.model";
 import { PostsService } from "../posts.service";
 import { moodsIcons } from "../post.model";
 import { PageEvent } from "@angular/material";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-post-list",

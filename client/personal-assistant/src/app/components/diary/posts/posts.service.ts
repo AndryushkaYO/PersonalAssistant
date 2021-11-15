@@ -24,7 +24,6 @@ export class PostsService {
         'http://localhost:3000/api/posts' + queryParams
       )
       .pipe(
-        filter((data) => data.posts && data.posts.length),
         map((data) => { 
           return {
             posts: data.posts.map((el) => ({

@@ -1,18 +1,32 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header-block',
   templateUrl: './header-block.component.html',
   styleUrls: ['./header-block.component.scss']
 })
-export class HeaderBlockComponent implements OnInit {
+export class HeaderBlockComponent implements OnInit, OnDestroy {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isLightTheme: boolean = false;
   @Output() onChangeTheme: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
+  private authListenerSubs: Subscription;
+  userAuthenticated: boolean = false;
 
-  ngOnInit() { }
+  constructor(public authService: AuthService) { }
+
+
+  ngOnInit() { 
+    this.userAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener()
+      .subscribe((isAuthenticated: boolean) => this.userAuthenticated = isAuthenticated);
+  }
+  
+  ngOnDestroy() {
+    this.authListenerSubs.unsubscribe();
+  }
 
   toggleSideBar() {
     this.toggleSideBarForMe.emit();
@@ -25,5 +39,9 @@ export class HeaderBlockComponent implements OnInit {
 
   changeTheme() {
     this.onChangeTheme.emit();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }
