@@ -11,9 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PostCreateComponent } from './components/diary/posts/post-create/post-create.component';
 import { PostListComponent } from './components/diary/posts/post-list/post-list.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
+import { HabbitsTrackerComponent } from './components/habbits-tracker/habbits-tracker.component';
+import { EditHabbitsTrackerComponent } from './components/habbits-tracker/edit-habbits-tracker/edit-habbits-tracker.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,11 @@ import { PostListComponent } from './components/diary/posts/post-list/post-list.
     FooterBlockComponent,
     SelectionMenuComponent,
     PostCreateComponent,
-    PostListComponent
+    PostListComponent,
+    LoginComponent,
+    SignupComponent,
+    HabbitsTrackerComponent,
+    EditHabbitsTrackerComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +44,11 @@ import { PostListComponent } from './components/diary/posts/post-list/post-list.
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
   isOpened: { type: Boolean, require: false },
   labels: { type: Array, require: false },
   imagePath: { type: String, require: false },
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true }
 });
 
 module.exports = mongoose.model('Post', postSchema);

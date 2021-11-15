@@ -5,6 +5,7 @@
       </button>
 
       <span> Personal Assistant App </span>
+
       <button mat-icon-button (click)="changeTheme()"
         class="theme-button"
         aria-label="Change theme button">
@@ -12,5 +13,8 @@
         <mat-icon *ngIf="!isLightTheme">light_mode</mat-icon>
       </button>
 
+      <a mat-button [routerLink]="['/signup']" *ngIf="!userAuthenticated">Signup</a>
+      <a mat-button [routerLink]="['/login']" *ngIf="!userAuthenticated">Login</a>
+      <button mat-button *ngIf="userAuthenticated" (click)="onLogout()">Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>

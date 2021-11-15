@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const { resourceLimits } = require('worker_threads');
+const checkAuth = require('../middleware/check-auth');
 
 const Post = require('../models/post');
 
@@ -30,7 +32,7 @@ const storage = multer.diskStorage({
   }
 });
 
-router.post('', multer({ storage: storage }).single('image'), (req, res, next) => {
+router.post('', checkAuth, multer({ storage: storage }).single('image'), (req, res, next) => {
   const url = req.protocol + '://' + req.get('host');
   const post = new Post({
     title: req.body.title,
@@ -42,7 +44,8 @@ router.post('', multer({ storage: storage }).single('image'), (req, res, next) =
     labels: req.body.labels && typeof(req.body.labels) === 'string' 
       ? req.body.labels.split(',') 
       : [],
-    imagePath: req.file && req.file.filename ? url + '/images/' + req.file.filename : ''
+    imagePath: req.file && req.file.filename ? url + '/images/' + req.file.filename : '',
+    creator: req.userData.userId
   });
   post.save().then((createdPost) => {
     res.status(201).json({
@@ -55,10 +58,10 @@ router.post('', multer({ storage: storage }).single('image'), (req, res, next) =
   });
 });
 
-router.get('', (req, res, next) => {
+router.get('', checkAuth, (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const postQuery = Post.find();
+  const postQuery = Post.find({ creator: req.userData.userId });
 
   let fetchedPosts;
 
@@ -80,7 +83,7 @@ router.get('', (req, res, next) => {
   });
 });
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', checkAuth, (req, res, next) => {
   Post.findById(req.params.id).then((post) => {
     if (post) {
       res.status(200).json({
@@ -95,15 +98,21 @@ router.get('/:id', (req, res, next) => {
   });
 });
 
-router.delete('/:id', (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id}).then((posts) => {
-    res.status(201).json({
-      message: 'Post deleted successfully'
-    });
+router.delete('/:id', checkAuth, (req, res, next) => {
+  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then((result) => {
+    if (result.n > 0) {
+      res.status(200).json({
+        message: 'Post deleted successfully'
+      });
+    } else {
+      res.status(401).json({
+        message: 'Dont have access to delete post'
+      });
+    }
   });  
 });
 
-router.put('/:id', multer({ storage: storage }).single('image'), (req, res, next) => {
+router.put('/:id', checkAuth, multer({ storage: storage }).single('image'), (req, res, next) => {
   let imagePath;
   if (req.file) {
     imagePath = req.protocol + '://' + req.get('host') + '/images/' + req.file.filename;
@@ -122,10 +131,16 @@ router.put('/:id', multer({ storage: storage }).single('image'), (req, res, next
     labels: typeof(req.body.labels) === 'string' ? req.body.labels.split(',') : req.body.labels,
     imagePath
   });
-  Post.updateOne({ _id: req.params.id }, post).then(() => {
-    res.status(200).json({
-      message: 'Post updated successfully'
-    });
+  Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then((result) => {
+    if (result.nModified > 0) {
+      res.status(200).json({
+        message: 'Post updated successfully'
+      });
+    } else {
+      res.status(401).json({
+        message: 'Dont have access to modify post'
+      });
+    }
   });  
 });
 
