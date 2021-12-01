@@ -9,16 +9,16 @@
   </button>
   <div class="main-card-header">
     <mat-card-title>Select tools you'd like to use</mat-card-title>
-    <mat-card-subtitle>*You can change them later</mat-card-subtitle>
+    <mat-card-subtitle>*Grey blocks displays those which are comming soon</mat-card-subtitle>
   </div>
   <div class="cards">
-    <mat-card *ngFor="let card of cards" class="card" (click)="onCardClick(card.id)"
+    <mat-card *ngFor="let card of cards" class="card" [ngClass]="{ 'disabled': card.comingsoon}" (click)="onCardClick(card.id)"
       matTooltip="Info tooltip about {{card.name}} tool"
       matTooltipClass='tooltip'>
-      <mat-checkbox class="card-checkbox" [(ngModel)]="card.checked" (click)="$event.stopPropagation()"></mat-checkbox>
+      <mat-checkbox [disabled]="card.comingsoon" class="card-checkbox" [(ngModel)]="card.checked" (click)="$event.stopPropagation()"></mat-checkbox>
       <mat-card-title>{{card.name}}</mat-card-title>
       <mat-card-content>
-        <p>This is text</p>
+        <p>This is component is supporting {{card.name}} functionality.</p>
       </mat-card-content>
     </mat-card>
   </div>

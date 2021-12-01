@@ -6,6 +6,7 @@ const app = express();
 
 const postRoutes = require('./routes/posts');
 const userRoutes = require('./routes/user');
+const habbitRoutes = require('./routes/habbits');
 
 mongoose.connect('mongodb+srv://andri:aBOrizylgqDBErup@cluster0.cyhq4.mongodb.net/personal-assistant-db?w=majority')
 .then(() => {
@@ -34,5 +35,6 @@ app.use((req, res, next) => {
 
 app.use('/api/posts', postRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/habbits', habbitRoutes);
 
 module.exports = app;

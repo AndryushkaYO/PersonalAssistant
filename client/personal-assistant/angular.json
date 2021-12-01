@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "personal-assistant"
+  "defaultProject": "personal-assistant",
+  "cli": {
+    "analytics": "dc749f44-6977-49bf-80cc-fb0a00489a73"
+  }
 }

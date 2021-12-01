@@ -1,16 +1,15 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Mood, Post } from "../post.model";
-import { PostsService } from "../posts.service";
-import { moodsIcons } from "../post.model";
-import { PageEvent } from "@angular/material";
-import { AuthService } from "src/app/auth/auth.service";
+import { Mood, Post } from '../post.model';
+import { PostsService } from '../posts.service';
+import { moodsIcons } from '../post.model';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
-  selector: "app-post-list",
-  templateUrl: "./post-list.component.html",
-  styleUrls: ["./post-list.component.scss"]
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];

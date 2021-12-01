@@ -1,0 +1,49 @@
+<div class="top">
+  <h2>Habbits tracker</h2>
+  <div class="edit">
+    <a mat-button color="primary" (click)="isEditMode = !isEditMode" *ngIf="!isEditMode">
+      <mat-icon>edit</mat-icon> Edit
+    </a>
+    <a mat-button color="primary" (click)="updateHabbitsTracker()" *ngIf="isEditMode">
+      <mat-icon>arrow_back</mat-icon> Back
+    </a>
+  </div>
+</div>
+<div class="datepicker" *ngIf="!isEditMode && habbits.length > 0">
+  <span class="material-icons left" (click)="changeMonth(false)">
+    chevron_left
+  </span>
+  <mat-form-field appearance="fill">
+    <mat-label>Month and Year</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <span class="material-icons right"  (click)="changeMonth()">
+      chevron_right
+  </span>
+</div>
+
+<table matSort (matSortChange)="sortData($event)" *ngIf="!isEditMode && habbits.length > 0">
+  <tr>
+    <th mat-sort-header="name">Habbit</th>
+    <th *ngFor="let date of allDates">{{ date | date:'d' }}</th>
+  </tr>
+
+  <tr *ngFor="let habbit of sortedData">
+    <td class="habbit-name">{{habbit.name}}</td>
+    <td *ngFor="let date of allDates" class="text-center">
+      <mat-checkbox #checkbox [checked]="isChecked(habbit, date)" (click)="checkHabbit(date, habbit.id, checkbox)"></mat-checkbox></td>
+  </tr>
+</table>
+
+<p class="info-text mat-body-1" *ngIf="!isEditMode && habbits.length <= 0 && !isLoading">No habbits added yet! Go to edit mode to add new one.</p>
+
+<app-edit-habbits-tracker *ngIf="isEditMode"
+  [habbits]="habbits"
+></app-edit-habbits-tracker>
