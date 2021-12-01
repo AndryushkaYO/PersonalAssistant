@@ -1,0 +1,26 @@
+::ng-deep {
+  .mat-list.mat-list-base .mat-list-item .mat-list-item-content {
+    padding: 0;
+  }
+
+  .buttons {
+    margin-left: auto;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .new-habbit {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .save-btn {
+    margin-top: 20px;
+    margin-left: auto;
+    display: block;
+    margin-right: 20px;
+  }
+}

@@ -40,6 +40,7 @@ const routes: Routes = [
   {
     path: 'habbits',
     component: HabbitsTrackerComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,0 +1,31 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-list role="list" *ngIf="!isLoading">
+  <mat-list-item role="listitem" *ngFor="let habbit of habbits">
+    {{habbit.name}}
+    <div class="buttons">
+      <a mat-button color="primary"  *ngIf="habbit.visible"  (click)="changeVisibility(habbit.id)">
+        <mat-icon>visibility</mat-icon>
+      </a>
+      <a mat-button color="primary"  *ngIf="!habbit.visible" (click)="changeVisibility(habbit.id)">
+        <mat-icon>visibility_off</mat-icon>
+      </a>
+      <a mat-button color="primary" (click)="deleteHabbit(habbit.id)">
+        <mat-icon>clear</mat-icon>
+      </a>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div class="new-habbit"  *ngIf="!isLoading">
+  <mat-form-field class="example-full-width">
+    <mat-label>Add new habbit</mat-label>
+    <input matInput placeholder="Ex. Morning running" type="text" #newHabbit [disabled]="habbits.length >= limit">
+  </mat-form-field>
+  <a mat-button color="primary"  [disabled]="habbits.length >= limit" (click)="addNewHabbit(newHabbit)">
+    <mat-icon>add</mat-icon>
+  </a>
+</div>
+
+<div *ngIf="habbits.length >= limit && !isLoading"> * You can't add new habbit as you have reached limit (7). Pls, remove some to add new one.</div>
+  
