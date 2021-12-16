@@ -11,6 +11,7 @@ export class HeaderBlockComponent implements OnInit, OnDestroy {
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
   @Input() isLightTheme: boolean = false;
   @Output() onChangeTheme: EventEmitter<any> = new EventEmitter();
+  @Output() onLogClicked: EventEmitter<any> = new EventEmitter();
 
   private authListenerSubs: Subscription;
   userAuthenticated: boolean = false;
@@ -43,5 +44,6 @@ export class HeaderBlockComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authService.logout();
+    this.onLogClicked.emit(false);
   }
 }

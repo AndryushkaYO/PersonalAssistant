@@ -19,6 +19,12 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { HabbitsTrackerComponent } from './components/habbits-tracker/habbits-tracker.component';
 import { EditHabbitsTrackerComponent } from './components/habbits-tracker/edit-habbits-tracker/edit-habbits-tracker.component';
+import { TodoListEditComponent } from './components/todo-list/todo-list-edit/todo-list-edit.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { BalanceWheelEditComponent } from './components/balance-wheel/balance-wheel-edit/balance-wheel-edit.component';
+import { BalanceWheelComponent } from './components/balance-wheel/balance-wheel.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -33,7 +39,12 @@ import { EditHabbitsTrackerComponent } from './components/habbits-tracker/edit-h
     LoginComponent,
     SignupComponent,
     HabbitsTrackerComponent,
-    EditHabbitsTrackerComponent
+    EditHabbitsTrackerComponent,
+    TodoListEditComponent,
+    TodoListComponent,
+    BalanceWheelEditComponent,
+    BalanceWheelComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +53,8 @@ import { EditHabbitsTrackerComponent } from './components/habbits-tracker/edit-h
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

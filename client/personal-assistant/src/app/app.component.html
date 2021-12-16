@@ -2,11 +2,12 @@
   [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }"
   (toggleSideBarForMe)="sideBarToggler($event)"
   (onChangeTheme)="changeTheme()"
+  (onLogClicked)="log($event)"
   [isLightTheme]="isLightTheme"
 ></app-header-block>
 
 <mat-drawer-container [ngClass]="{ 'light-theme': isLightTheme, 'dark-theme': !isLightTheme }">
-  <mat-drawer mode="side" [opened]="sideBarOpen" class="scroll">
+  <mat-drawer mode="side" [opened]="sideBarOpen" class="scroll" *ngIf="showSideBar">
     <app-side-block></app-side-block>
   </mat-drawer>
   <mat-drawer-content>

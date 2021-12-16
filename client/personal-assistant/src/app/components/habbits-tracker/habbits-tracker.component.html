@@ -35,7 +35,7 @@
     <th *ngFor="let date of allDates">{{ date | date:'d' }}</th>
   </tr>
 
-  <tr *ngFor="let habbit of sortedData">
+  <tr *ngFor="let habbit of sortedData" [ngClass]="{ 'd-none': !habbit.visible}">
     <td class="habbit-name">{{habbit.name}}</td>
     <td *ngFor="let date of allDates" class="text-center">
       <mat-checkbox #checkbox [checked]="isChecked(habbit, date)" (click)="checkHabbit(date, habbit.id, checkbox)"></mat-checkbox></td>

@@ -1,0 +1,53 @@
+<div class="top">
+  <h2>balance Wheel</h2>
+  <div class="edit">
+    <a mat-button color="primary" [routerLink]="['/balance']">
+      <mat-icon>arrow_back</mat-icon> Back
+    </a>
+  </div>
+</div>
+
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form *ngIf="!isLoading">
+    <div *ngIf="!sectors.length">
+      *Add new sector to balance wheel
+    </div>
+    <div *ngFor="let el of sectors">
+      <mat-form-field style="margin-right: 20px;">
+        <input
+          matInput
+          type="text"
+          minlength="3"
+          [value]="el.name"
+          placeholder="Sector title">
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          type="number"
+          [value]="el.value"
+          placeholder="Value">
+      </mat-form-field>
+      
+      <a mat-button color="primary" (click)="deleteSector(el.name)">
+        <mat-icon>clear</mat-icon>
+      </a>
+    </div>
+    <div class="new-sector"  *ngIf="!isLoading">
+      <mat-form-field class="example-full-width">
+        <mat-label>Add new sector</mat-label>
+        <input matInput placeholder="Ex. Family" type="text" #newSector [disabled]="wheel?.sectors.length >= limit">
+      </mat-form-field>
+      <a mat-button color="primary"  [disabled]="wheel?.sectors.length >= limit" (click)="addNewSector(newSector.value)">
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+    <button
+    class="save-btn"
+      mat-raised-button
+      color="accent"
+      (click)="onSaveBalanceWheel()"
+      type="submit">Save Balance Wheel</button>
+  </form>
+</mat-card>

@@ -1,0 +1,46 @@
+<div class="top">
+  <h2>balance Wheel</h2>
+  <div class="edit">
+    <a mat-button color="primary" (click)="openEditMode()" *ngIf="id">
+      <mat-icon>edit</mat-icon> Edit
+    </a>
+    <a mat-button color="primary" (click)="openEditMode()" *ngIf="!id">
+      <mat-icon>add</mat-icon> Add
+    </a>
+  </div>
+</div>
+<div class="datepicker" *ngIf="!isEditMode">
+  <span class="material-icons left" (click)="changeMonth(false)">
+    chevron_left
+  </span>
+  <mat-form-field appearance="fill">
+    <mat-label>Month and Year</mat-label>
+    <input matInput [matDatepicker]="dp" [formControl]="date">
+    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+    <mat-datepicker #dp
+                    startView="multi-year"
+                    (yearSelected)="chosenYearHandler($event)"
+                    (monthSelected)="chosenMonthHandler($event, dp)"
+                    panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <span class="material-icons right"  (click)="changeMonth()">
+      chevron_right
+  </span>
+</div>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<div style="display: block;" class="wheel" *ngIf="!isLoading">
+  <canvas baseChart *ngIf="labels.length && values.length"
+    [data]="values"
+    [labels]="labels"
+    [options]="barChartOptions"
+    [legend]="legend"
+    [chartType]="polarAreaChartType">
+  </canvas>
+  <div *ngIf="!(labels.length && values.length)">
+    No balace wheel is provided for this month
+  </div>
+</div>
+

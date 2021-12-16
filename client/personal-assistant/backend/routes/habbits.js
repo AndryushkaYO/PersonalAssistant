@@ -61,7 +61,6 @@ router.put('/:id', checkAuth, (req, res, next) => {
     markedDates: req.body.markedDates,
   });
   Habbit.updateOne({ _id: req.body.id, creator: req.userData.userId }, habbit).then((result) => {
-    console.log(result);
     if (result.modifiedCount > 0) {
       res.status(200).json({
         message: 'Habbit updated successfully'

@@ -1,0 +1,51 @@
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
+  margin: 0 20px;
+
+  
+  .info-text {
+    text-align: center;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h2 {
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+
+  .new-sector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .save-btn {
+    margin-top: 20px;
+    margin-left: auto;
+    display: block;
+    margin-right: 20px;
+  }
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+  }
+}

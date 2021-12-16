@@ -1,0 +1,38 @@
+<div class="top">
+  <h2>Statistics</h2>
+  <div class="edit">
+    <a mat-button color="primary" (click)="download()">
+      <mat-icon>
+        file_download</mat-icon> Download 
+    </a>
+  </div>
+</div>
+
+<div id="statistics">
+  <div>
+    Moods popularity (mood - amount of posts with this mood): 😍 - 25, 😊 - 17, 🙁 - 13, 😐 - 2
+  </div>
+  <div style="display: block;" style="width: 80%; margin-top: 20px;">
+    <canvas baseChart 
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
+  <div style="margin-top: 20px;">
+    All tasks amount: 10
+    <br>
+    <br>
+    <p>TODO: 5</p>
+    <p>IN PROGRESS: 3</p>
+    <p>DONE: 2</p>
+  </div>
+  <div style="padding-top: 20px;"><b>Habbits & amount of days, when habbit was done</b> 
+  <mat-list-item role="listitem" *ngFor="let habbit of habbits">
+    <div style="padding-top: 10px;">{{habbit.name}} - {{habbit.amount}} days</div>
+  </mat-list-item>
+</div>
+</div>

@@ -1,0 +1,74 @@
+<!-- <div class="back">
+  <a mat-button color="primary" [routerLink]="['/posts']">
+    <mat-icon>arrow_back</mat-icon> Back to ToDo list</a>
+</div> -->
+
+<div class="top">
+  <h2>Todo list</h2>
+  <div class="edit">
+    <a mat-button color="primary" (click)="isEditMode = !isEditMode" *ngIf="isEditMode">
+      <mat-icon>edit</mat-icon> Edit
+    </a>
+    <a mat-button color="primary">
+      <mat-icon>arrow_back</mat-icon> Back
+    </a>
+  </div>
+</div>
+
+<mat-card>
+     <mat-form-field>
+      <input
+        matInput
+        type="text"
+        minlength="3"
+        placeholder="Task name">
+    </mat-form-field> 
+
+      
+      <div>Status:</div>
+
+<mat-form-field appearance="fill">
+  <mat-label>Choose one</mat-label>
+  <mat-select  [errorStateMatcher]="matcher">
+    <mat-option value="valid">To Do</mat-option>
+    <mat-option value="valid">In Progress</mat-option>
+    <mat-option value="valid">Done</mat-option>
+  </mat-select>
+  <mat-hint>Current status of your task</mat-hint>
+  <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+  <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+    Your selection is invalid
+  </mat-error>
+</mat-form-field>
+
+<div style="padding-top: 20px;">Deadline:</div>
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field class="example-chip-list">
+  <mat-label>Labels</mat-label>
+  <mat-chip-list #chipList aria-label="Labels">
+    <mat-chip *ngFor="let label of labels" [selectable]="true"
+             [removable]="true" (removed)="remove(label)">
+      {{label}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New label..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="true"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+
+<button class="save-btn"
+      mat-raised-button
+      color="accent"
+      type="submit">Add task</button>
+    </mat-card>

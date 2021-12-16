@@ -16,10 +16,6 @@ td, th {
   padding-bottom: 20px;
 }
 
-h2 {
-  font-weight: 300;
-  text-transform: uppercase;
-}
 
 .habbit-name {
   width: 200px;
@@ -58,8 +54,17 @@ h2 {
     justify-content: space-between;
     align-items: center;
   }
+  
+  h2 {
+    font-weight: 300;
+    text-transform: uppercase;
+  }
 
-  .d-none {
-    display: none;
+  .wheel {
+    height: calc(100vh - 280px);
+  }
+
+  mat-spinner {
+    margin: auto;
   }
 }

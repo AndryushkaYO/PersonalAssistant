@@ -13,12 +13,12 @@ export class SelectionMenuComponent implements OnInit {
 
   cards = [
     { comingsoon: false, id: '1', name: 'Habbit Tracker', checked: true },
-    { comingsoon: false, id: '2', name: 'Diary', checked: false },
-    { comingsoon: true, id: '3', name: 'Goals Planner', checked: true },
-    { comingsoon: true, id: '4', name: 'Progress Board', checked: true },
-    { comingsoon: false, id: '5', name: 'ToDo list', checked: false },
-    { comingsoon: false, id: '6', name: 'Wheel Balance', checked: false },
-    { comingsoon: false, id: '7', name: 'Statistics', checked: false },
+    { comingsoon: false, id: '2', name: 'Diary', checked: true },
+    { comingsoon: true, id: '3', name: 'Goals Planner', checked: false },
+    { comingsoon: true, id: '4', name: 'Progress Board', checked: false },
+    { comingsoon: false, id: '5', name: 'ToDo list', checked: true },
+    { comingsoon: false, id: '6', name: 'Wheel Balance', checked: true },
+    { comingsoon: false, id: '7', name: 'Statistics', checked: true },
     { comingsoon: true, id: '8', name: 'Calendar', checked: false },
     { comingsoon: true, id: '9', name: 'Eizenhauer Matrix', checked: false }
   ];

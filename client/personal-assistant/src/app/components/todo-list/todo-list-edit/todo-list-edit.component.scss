@@ -1,0 +1,79 @@
+mat-form-field,
+textarea {
+  width: 100%;
+}
+
+.back {
+  margin-bottom: 20px;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.pick-image {
+  margin: 10px 0;
+  width: 100%;
+}
+
+button[type="submit"] {
+  margin-left: auto;
+}
+
+img {
+  width: 100%;
+  border-radius: 7px;
+}
+
+.image-preview {
+  width: 60%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+::ng-deep {
+  .material-icons:hover{
+    cursor: pointer;
+  }
+}
+
+
+
+h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+
+  .top {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .save-btn {
+    display: block;
+    margin-left: auto;
+  }
