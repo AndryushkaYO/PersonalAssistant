@@ -1,0 +1,16 @@
+.top {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.card {
+  margin-bottom: 20px;
+}

@@ -71,10 +71,10 @@ export class BalanceWheelComponent implements OnInit {
 
   updateChart() {
     let result;
-    this.wheels.forEach((item)=> {
+    this.wheels.forEach((item )=> {
       if (item.date == this.startSelectedDate) {
         result = item;
-        this.id = item.is;
+        this.id = item.id;
       }
     });
     this.labels = result.sectors.map(el => el.name);
@@ -110,8 +110,43 @@ export class BalanceWheelComponent implements OnInit {
     const newDate = this.date.value.add(addMonth ? 1: -1, 'months');
     this.date.setValue(newDate);
     this.startSelectedDate = this.date.value.startOf('month').format('MM/DD/YY');
+    this.wheels.push({
+      id: '1',
+      date:  this.startSelectedDate,
+      sectors: [{
+        name: 'Family',
+        value: this.getRandomArbitrary(7,10)
+      },{
+        name: 'Work',
+        value: this.getRandomArbitrary(6,10)
+      },{
+        name: 'Hobbies',
+        value: this.getRandomArbitrary(3,7)
+      },
+      {
+        name: 'Friends',
+        value: this.getRandomArbitrary(4,8)
+      },{
+        name: 'Money',
+        value: this.getRandomArbitrary(5,9)
+      },{
+        name: 'Health',
+        value: this.getRandomArbitrary(3,7)
+      },{
+        name: 'University',
+        value: this.getRandomArbitrary(3,8)
+      },{
+        name: 'Entertainment',
+        value: this.getRandomArbitrary(5,7)
+      }]
+    });
     if (this.wheels.length) {
       this.updateChart();
     }
+    console.log(this.startSelectedDate);
+  }
+
+  getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
   }
 }

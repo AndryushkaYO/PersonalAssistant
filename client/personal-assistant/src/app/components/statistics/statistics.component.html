@@ -34,5 +34,19 @@
   <mat-list-item role="listitem" *ngFor="let habbit of habbits">
     <div style="padding-top: 10px;">{{habbit.name}} - {{habbit.amount}} days</div>
   </mat-list-item>
+
+  <div style="padding-top: 20px;"><b>All tasks amount and their status</b> 
+
+
+  <div style="display: block;" style="width: 80%; margin-top: 20px;">
+    <canvas baseChart 
+      [datasets]="barChartData2"
+      [labels]="barChartLabels2"
+      [options]="barChartOptions2"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">
+    </canvas>
+  </div>
 </div>
 </div>

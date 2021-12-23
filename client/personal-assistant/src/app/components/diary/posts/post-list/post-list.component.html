@@ -1,6 +1,14 @@
-<div class="add-new">
-  <a mat-stroked-button color="primary" [routerLink]="['/posts/create']">Add new post</a>
+
+<div class="top">
+  <h2>diary</h2>
+  <div class="edit">
+    <div class="add-new">
+      <a mat-stroked-button color="primary" [routerLink]="['/posts/create']">Add new post</a>
+    </div>
+  </div>
 </div>
+
+
 
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 

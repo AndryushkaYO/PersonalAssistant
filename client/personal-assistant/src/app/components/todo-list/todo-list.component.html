@@ -1,1 +1,60 @@
-<p>todo-list works!</p>
+<div class="top">
+  <h2>TODO list</h2>
+  <div class="edit">
+    <a mat-button color="primary" (click)="add()">
+      <mat-icon>add</mat-icon> Add
+    </a>
+  </div>
+</div>
+
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+
+<mat-card *ngFor="let card of todos" class="card">
+  <mat-card-title style="display: flex;
+  justify-content: space-between; height: 55px;
+  align-items: center;">
+      <p style="font-weight: 100;">
+        <mat-checkbox  class="card-checkbox"></mat-checkbox>
+        {{card.name}}</p>
+      <p>
+        
+        <a mat-button color="primary">
+          <mat-icon>clear</mat-icon>
+        </a>
+      </p>
+    </mat-card-title>
+  <mat-card-content style="display: flex; 
+  justify-content: space-between;" >
+    <mat-form-field appearance="fill" style="font-size: 15px; padding-top: 0;">
+      <mat-select [formControl]="selected" [errorStateMatcher]="matcher">
+        <mat-option>Clear</mat-option>
+        <mat-option value="valid">{{card.status}}</mat-option>
+        <mat-option value="invalid">Invalid option</mat-option>
+      </mat-select>
+      <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+      <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+        Your selection is invalid
+      </mat-error>
+    </mat-form-field>
+    <div style="display: flex;
+  justify-content: flex-end;
+  align-items: center; font-style: italic;">
+    <span style="padding-right: 20px;">Date created: {{card.created | date}}</span>
+    <span>Deadline date: {{card.deadline | date}}</span>
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Choose one</mat-label>
+      <mat-select  >
+        <mat-option value="valid" selected>{{card.status}}</mat-option>
+      </mat-select>
+      <mat-hint>Current status of your task</mat-hint>
+    </mat-form-field> -->
+    
+    </div>
+  </mat-card-content>
+</mat-card>
+
+
+
+<p class="info-text mat-body-1" *ngIf="todos.length <= 0 && !isLoading">No tasks added yet!</p>

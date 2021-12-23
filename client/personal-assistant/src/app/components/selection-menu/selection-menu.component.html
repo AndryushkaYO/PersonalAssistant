@@ -1,4 +1,4 @@
-<mat-card class="main-card" *ngIf="isSelectionCardOpen">
+<mat-card class="main-card" *ngIf="isSelectionCardOpen && !isLoading">
   <button mat-icon-button color="primary"
     aria-label="Close selection component button"
     (click)="closeSelectionCard()"
@@ -27,3 +27,4 @@
     <button mat-button color="primary" (click)="saveSelectionCard()">Save</button>
   </mat-card-actions>
 </mat-card>
+<mat-spinner *ngIf="isLoading"></mat-spinner>

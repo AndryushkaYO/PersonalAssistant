@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-selection-menu',
@@ -8,17 +9,19 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class SelectionMenuComponent implements OnInit {
   @Input() isSelectionCardOpen = true;
   @Output() onSelectionClose = new EventEmitter()
+  isLoading = false;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   cards = [
-    { comingsoon: false, id: '1', name: 'Habbit Tracker', checked: true },
-    { comingsoon: false, id: '2', name: 'Diary', checked: true },
+    { comingsoon: false, id: '0', name: 'Pomodoro Timer', checked: false },
+    { comingsoon: false, id: '1', name: 'Habbit Tracker', checked: false },
+    { comingsoon: false, id: '2', name: 'Diary', checked: false },
     { comingsoon: true, id: '3', name: 'Goals Planner', checked: false },
     { comingsoon: true, id: '4', name: 'Progress Board', checked: false },
-    { comingsoon: false, id: '5', name: 'ToDo list', checked: true },
-    { comingsoon: false, id: '6', name: 'Wheel Balance', checked: true },
-    { comingsoon: false, id: '7', name: 'Statistics', checked: true },
+    { comingsoon: false, id: '5', name: 'ToDo list', checked: false },
+    { comingsoon: false, id: '6', name: 'Wheel Balance', checked: false },
+    { comingsoon: false, id: '7', name: 'Statistics', checked: false },
     { comingsoon: true, id: '8', name: 'Calendar', checked: false },
     { comingsoon: true, id: '9', name: 'Eizenhauer Matrix', checked: false }
   ];
@@ -40,5 +43,9 @@ export class SelectionMenuComponent implements OnInit {
 
   saveSelectionCard() {
     this.closeSelectionCard();
+    this.isLoading = true;
+    setTimeout(()=>{
+      this.router.navigate(['/posts']);
+    }, 1000)
   }
 }
